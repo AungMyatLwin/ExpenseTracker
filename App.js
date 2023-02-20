@@ -1,13 +1,56 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {Ionicons} from '@expo/vector-icons'
+
+import { GlobalStyles } from './constants/styles';
+import AllExpense from './screens/AllExpense';
+import ManageExpense from './screens/ManageExpense';
+import RecentExpense from './screens/RecentExpense';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  const Stack= createNativeStackNavigator();
+  const Bottom= createBottomTabNavigator();
+
+  function ExpenseOverview(){
+    return <Bottom.Navigator screenOptions={
+      {
+        headerStyle:{backgroundColor:GlobalStyles.colors.primary500},
+        headerTintColor:'white',
+        tabBarStyle:{ backgroundColor: GlobalStyles.colors.primary500},
+        tabBarActiveTintColor:GlobalStyles.colors.accent500
+      }
+    }>
+      <Bottom.Screen name="RecentExpense" component={RecentExpense} options={{
+        title:"Recent Expense",
+        tabBarLabel:"Recent",
+        tabBarIcon:({color,size})=>{
+          return <Ionicons name='hourglass' color={color} size={size}/>
+        }
+      }}/>
+      <Bottom.Screen name="AllExpense" component={AllExpense} options={{
+        title:"All Expense",
+        tabBarLabel:"All Expense",
+        tabBarIcon:({color,size})=> <Ionicons name='calendar' color={color} size={size}/>
+      }}/>
+    </Bottom.Navigator>
+  }
+  return <>
+      <StatusBar style="dark" />
+      <NavigationContainer >
+      <Stack.Navigator>
+      <Stack.Screen name="ExpenseOverview" component={ExpenseOverview} options={
+        {
+          headerShown:false
+        }
+      }/>
+      <Stack.Screen name='ManageExpense' component={ManageExpense}/>
+      </Stack.Navigator>
+      </NavigationContainer>
+    </>
 }
 
 const styles = StyleSheet.create({
