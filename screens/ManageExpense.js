@@ -19,9 +19,9 @@ function ManageExpense({route,navigation}){
     function confirmHandler(){};
     function deleteExpenseHandler(){};
     return <View style={styles.container}>
-        <View>
-            <Button mode={"flat"} onPress={cancelHandler}>Cancel</Button>
-            <Button onPress={confirmHandler}>{isEditing? "Update" : "Add"}</Button>
+        <View style={styles.buttons}>
+            <Button mode={"flat"} onPress={cancelHandler} style={styles.buttonStyle}>Cancel</Button>
+            <Button onPress={confirmHandler} style={styles.buttonStyle}>{isEditing? "Update" : "Add"}</Button>
         </View>
         {isEditing && (
             <View style={styles.deleteContainer}>
@@ -50,5 +50,14 @@ const styles=StyleSheet.create({
         borderTopWidth:2,
         borderTopColor:GlobalStyles.colors.primary200,
         alignItems:"center",
+    },
+    buttons:{
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    buttonStyle:{
+        minWidth:120,
+        marginHorizontal:8
     }
 });
