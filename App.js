@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -52,13 +52,22 @@ export default function App() {
   return <>
       <StatusBar style="dark" />
       <NavigationContainer >
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={
+        {
+        headerStyle:{backgroundColor:GlobalStyles.colors.primary500},
+        headerTintColor:'white'
+        }
+      }>
       <Stack.Screen name="ExpenseOverview" component={ExpenseOverview} options={
         {
           headerShown:false
         }
       }/>
-      <Stack.Screen name='ManageExpense' component={ManageExpense} />
+      <Stack.Screen name='ManageExpense' component={ManageExpense} options={
+        {
+          presentation:'modal'
+        }
+      }  />
       </Stack.Navigator>
       </NavigationContainer>
     </>
