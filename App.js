@@ -18,23 +18,22 @@ export default function App() {
   console.log(IconButton)
 
   function ExpenseOverview(){
-    return <Bottom.Navigator screenOptions={
-      {
-        headerStyle:{backgroundColor:GlobalStyles.colors.primary500},
-        headerTintColor:'white',
-        tabBarStyle:{ backgroundColor: GlobalStyles.colors.primary500},
-        tabBarActiveTintColor:GlobalStyles.colors.accent500,
-        headerRight: ({ tintColor }) => (
-          <IconButton
-            icon="add"
-            size={24}
-            color={tintColor}
-            onPress={() => {
-              navigation.navigate('ManageExpense');
-            }}
-          />
-        ),
-      }
+    return <Bottom.Navigator screenOptions={({navigation})=>({
+      headerStyle:{backgroundColor:GlobalStyles.colors.primary500},
+      headerTintColor:'white',
+      tabBarStyle:{ backgroundColor: GlobalStyles.colors.primary500},
+      tabBarActiveTintColor:GlobalStyles.colors.accent500,
+      headerRight: ({ tintColor }) => (
+        <IconButton
+          icon="add"
+          size={24}
+          color={tintColor}
+          onPress={() => {
+            navigation.navigate('ManageExpense');
+          }}
+        />
+      ),
+    })
     }>
       <Bottom.Screen name="RecentExpense" component={RecentExpense} options={{
         title:"Recent Expense",
