@@ -1,9 +1,6 @@
 import ExpensesOutput from "../components/ExpensesOutput/ExpensesOutput";
 
 
-
-
-
 function AllExpense(){
 
     return <View>
