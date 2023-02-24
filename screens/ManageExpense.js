@@ -15,9 +15,18 @@ function ManageExpense({route,navigation}){
         });
     },[navigation, isEditing]);
 
-    function cancelHandler(){};
-    function confirmHandler(){};
-    function deleteExpenseHandler(){};
+    function cancelHandler(){
+        navigation.goBack();
+    };
+
+    function confirmHandler(){
+        navigation.goBack();
+    };
+
+    function deleteExpenseHandler(){
+        navigation.goBack();
+    };
+
     return <View style={styles.container}>
         <View style={styles.buttons}>
             <Button mode={"flat"} onPress={cancelHandler} style={styles.buttonStyle}>Cancel</Button>
