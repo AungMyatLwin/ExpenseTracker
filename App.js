@@ -11,6 +11,7 @@ import AllExpense from './screens/AllExpense';
 import ManageExpense from './screens/ManageExpense';
 import RecentExpense from './screens/RecentExpense';
 import IconButton from './components/UI/IconButtons';
+import ExpensesContextProvider from './store/expenses-context';
 
 export default function App() {
   const Stack= createNativeStackNavigator();
@@ -51,6 +52,7 @@ export default function App() {
   }
   return <>
       <StatusBar style="dark" />
+      <ExpensesContextProvider>
       <NavigationContainer >
       <Stack.Navigator screenOptions={
         {
@@ -70,6 +72,7 @@ export default function App() {
       }  />
       </Stack.Navigator>
       </NavigationContainer>
+      </ExpensesContextProvider>
     </>
 }
 
