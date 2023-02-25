@@ -51,7 +51,7 @@ export default function App() {
     </Bottom.Navigator>
   }
   return <>
-      <StatusBar style="dark" />
+      <StatusBar style="inverted" />
       <ExpensesContextProvider>
       <NavigationContainer >
       <Stack.Navigator screenOptions={
