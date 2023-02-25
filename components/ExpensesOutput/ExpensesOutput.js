@@ -6,8 +6,8 @@ import ExpensesSummary from "./ExpensesSummary";
 
 function ExpensesOutput({expenses, expensesPeriod}){
     return <View style={styles.container}>
-        <ExpensesSummary expenses={DUMMY_EXPENSE} periodName={expensesPeriod}/>
-        <ExpenseList expenses={DUMMY_EXPENSE}/>
+        <ExpensesSummary expenses={expenses} periodName={expensesPeriod}/>
+        <ExpenseList expenses={expenses}/>
     </View>
 }
 
