@@ -3,9 +3,9 @@ import Input from "./Input";
 
 function ExpenseForm(){
     return <View>
-        <Input />
-        <Input />
-        <Input />
+        <Input label="Amount"/>
+        <Input label="Date"/>
+        <Input label="Description"/>
     </View>
 
 }
