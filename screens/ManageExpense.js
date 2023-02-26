@@ -4,6 +4,7 @@ import IconButtons from "../components/UI/IconButtons";
 import { GlobalStyles } from "../constants/styles";
 import Button from "../components/UI/Button";
 import { ExpensesContext } from "../store/expenses-context";
+import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 // import { useNavigation } from "@react-navigation/native";
 
 function ManageExpense({route,navigation}){
@@ -37,6 +38,7 @@ function ManageExpense({route,navigation}){
     };
 
     return <View style={styles.container}>
+        <ExpenseForm />
         <View style={styles.buttons}>
             <Button mode={"flat"} onPress={cancelHandler} style={styles.buttonStyle}>Cancel</Button>
             <Button onPress={confirmHandler} style={styles.buttonStyle}>{isEditing? "Update" : "Add"}</Button>
