@@ -7,7 +7,7 @@ function ExpenseForm(){
 
     }
     return <View>
-        <View>
+        <View style={styles.inputsRow}>
         <Input label="Amount" textInputConfig={{
             keyboardType:"decimal-pad",
             onChangeText:amountChangeHandler,
@@ -28,5 +28,8 @@ function ExpenseForm(){
 export default ExpenseForm;
 
 const styles=StyleSheet.create({
-
+    inputsRow:{
+        flexDirection:"row",
+        justifyContent:"space-between"
+    }
 });
