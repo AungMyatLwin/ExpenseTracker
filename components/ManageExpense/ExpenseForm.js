@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import Button from "../UI/Button";
 
 import Input from "./Input";
 
-function ExpenseForm(){
+function ExpenseForm({submitButtonLabel, onCancel, onSubmit}){
     const [inputValues, setInputValues]=useState({
         amount:'',
         date:'',
@@ -17,23 +18,30 @@ function ExpenseForm(){
             }
         });
     }
+    function submitHandler(){
+        const expenseData= {
+            amount: +inputValues.amount,
+            date: new Date(inputValues.date),
+            description: inputValues.description
+        };
+        onSubmit(expenseData);
+    }
     return <View style={styles.form}>
         <Text style={styles.title}>Your Expense</Text>
 
         <View style={styles.inputsRow}>
         
-        <Input label="Amount" textInputConfig={{
+        <Input label="Amount" style={styles.rowInput} textInputConfig={{
             keyboardType:"decimal-pad",
             onChangeText:inputChangeHandler.bind(this, "amount"),
             value:inputValues.amount
-        }}  style={styles.rowInput}/>
+        }}  />
         
         <Input label="Date" textInputConfig={{
             onChangeText:inputChangeHandler.bind(this, "date"),
             value:inputValues.date,
             placeholder:"YYYY-MM-DD",
             maxLength:10,
-
         }} style={styles.rowInput}/>
         
         </View>
@@ -43,6 +51,10 @@ function ExpenseForm(){
             onChangeText:inputChangeHandler.bind(this, "description"),
             value:inputValues.description
         }}/>
+        <View style={styles.buttons}>
+            <Button mode={"flat"} onPress={onCancel} style={styles.buttonStyle}>Cancel</Button>
+            <Button onPress={submitHandler} style={styles.buttonStyle}>{submitButtonLabel}</Button>
+        </View>
     </View>
 
 }
@@ -52,10 +64,10 @@ export default ExpenseForm;
 const styles=StyleSheet.create({
     inputsRow:{
         flexDirection:"row",
-        justifyContent:"space-between"
+        justifyContent:"space-between",
     },
     rowInput:{
-        flex:1
+        flex:1,
     },
     form:{
         marginTop:40
@@ -66,5 +78,14 @@ const styles=StyleSheet.create({
         color:"white",
         textAlign:"center",
         marginVertical:24
+    },
+    buttons:{
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    buttonStyle:{
+        minWidth:120,
+        marginHorizontal:8
     }
 });
