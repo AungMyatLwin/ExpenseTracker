@@ -22,12 +22,12 @@ function ManageExpense({route,navigation}){
         navigation.goBack();
     };
 
-    function confirmHandler(){
+    function confirmHandler(expenseData){
         if(isEditing){
-            expensesCtx.updateExpense(editedExpenseId,{description:'test', amount:19.99, date: new Date('2023-02-28')});
+            expensesCtx.updateExpense(editedExpenseId,expenseData);
         }
         else{
-            expensesCtx.addExpense({description:'test', amount:19.99, date: new Date('2023-02-28')})
+            expensesCtx.addExpense(expenseData)
         }
         navigation.goBack();
     };
@@ -38,11 +38,11 @@ function ManageExpense({route,navigation}){
     };
 
     return <View style={styles.container}>
-        <ExpenseForm />
-        <View style={styles.buttons}>
-            <Button mode={"flat"} onPress={cancelHandler} style={styles.buttonStyle}>Cancel</Button>
-            <Button onPress={confirmHandler} style={styles.buttonStyle}>{isEditing? "Update" : "Add"}</Button>
-        </View>
+        <ExpenseForm onCancel={cancelHandler}
+        submitButtonLabel={isEditing? 'Update':'Add'}
+        onSubmit={confirmHandler}
+        />
+        
         {isEditing && (
             <View style={styles.deleteContainer}>
                 <IconButtons 
@@ -70,14 +70,5 @@ const styles=StyleSheet.create({
         borderTopWidth:2,
         borderTopColor:GlobalStyles.colors.primary200,
         alignItems:"center",
-    },
-    buttons:{
-        flexDirection:'row',
-        justifyContent:'center',
-        alignItems:'center',
-    },
-    buttonStyle:{
-        minWidth:120,
-        marginHorizontal:8
     }
 });
