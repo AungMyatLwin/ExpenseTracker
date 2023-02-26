@@ -16,6 +16,7 @@ function ExpenseForm(){
             maxLength:10,
         }}/>
         <Input label="Description"textInputConfig={{
+            multiLine: true,
         }}/>
     </View>
 
