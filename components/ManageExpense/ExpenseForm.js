@@ -31,9 +31,9 @@ function ExpenseForm({submitButtonLabel, onCancel, onSubmit, defaultValues}){
     }
     function submitHandler(){
         const expenseData= {
-            amount: +inputs.amount,
-            date: new Date(inputs.date),
-            description: inputs.description
+            amount: +inputs.amount.value,
+            date: new Date(inputs.date.value),
+            description: inputs.description.value
         };
         const amountIsValid=!isNaN(expenseData.amount) && expenseData.amount > 0;
         const dateIsValid = expenseData.date.toString() !=='Invalid Date';
