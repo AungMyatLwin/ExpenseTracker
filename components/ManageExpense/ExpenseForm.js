@@ -76,10 +76,7 @@ function ExpenseForm({submitButtonLabel, onCancel, onSubmit, defaultValues}){
         />
         
         </View>
-        {formIsValid && (
-        <Text style={styles.error}>
-            Invalid input values - please check your entered data!
-        </Text>)}
+        { formIsValid && (<Text style={styles.error}>Invalid input values - please check your entered data!</Text>)}
         <Input label="Description"textInputConfig={{
             multiLine: true,
             onChangeText:inputChangeHandler.bind(this, "description"),
