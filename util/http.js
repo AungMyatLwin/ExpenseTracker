@@ -3,6 +3,10 @@ import axios from 'axios';
 const BACKEND_URL =
   'https://dummyproject-607fd-default-rtdb.asia-southeast1.firebasedatabase.app/';
 
+// for error handling
+const BACKEND_URL_FAKE =
+  'https://dummyproject-607fd-default-rtdb.asia-southeast1.firebasedatabaseapp/';
+
 export async function storeExpense(expenseData) {
   const response = await axios.post(BACKEND_URL + '/expenses.json', expenseData);
   const id = response.data.name;
