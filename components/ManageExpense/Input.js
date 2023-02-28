@@ -3,7 +3,7 @@ import { GlobalStyles } from "../../constants/styles";
 
 function Input({label, style, textInputConfig, invalid}){
     const inputStyles=[styles.input];
-    if(textInputConfig && textInputConfig.multiLine){
+    if(textInputConfig && textInputConfig.multiline){
         inputStyles.push(styles.inputMultiLine)
     }
     if(invalid){

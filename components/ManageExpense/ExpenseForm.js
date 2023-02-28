@@ -7,26 +7,28 @@ import Button from "../UI/Button";
 import Input from "./Input";
 
 function ExpenseForm({submitButtonLabel, onCancel, onSubmit, defaultValues}){
-    const [inputs, setInputs]=useState({
-        amount:{
-            value: defaultValues ? defaultValues.amount.toString() : '',
-            isValid: true
-    },
-        date:{
-            value:defaultValues ? getFormattedDate(defaultValues.date) : '',
-            isValid: true
+    console.log(defaultValues[0].amount, typeof defaultValues);
+    const [inputs, setInputs] = useState({
+        amount: {
+          value: defaultValues ? defaultValues.amount.toString() : '',
+          isValid: true,
         },
-        description:{
-            value:defaultValues ? defaultValues.description : '',
-            isValid: true
-        }
-    });
-    function inputChangeHandler(inputIndentifier,enteredValue){
-        setInputs((curInput)=>{
-            return{
-                ...curInput,
-                [inputIndentifier]:{value:enteredValue, isValid: true}
-            }
+        date: {
+          value: defaultValues ? getFormattedDate(defaultValues.date) : '',
+          isValid: true,
+        },
+        description: {
+          value: defaultValues ? defaultValues.description : '',
+          isValid: true,
+        },
+      });
+    
+      function inputChangedHandler(inputIdentifier, enteredValue) {
+        setInputs((curInputs) => {
+          return {
+            ...curInputs,
+            [inputIdentifier]: { value: enteredValue, isValid: true },
+          };
         });
     }
     function submitHandler(){
@@ -62,12 +64,12 @@ function ExpenseForm({submitButtonLabel, onCancel, onSubmit, defaultValues}){
         
         <Input label="Amount" style={styles.rowInput} textInputConfig={{
             keyboardType:"decimal-pad",
-            onChangeText:inputChangeHandler.bind(this, "amount"),
+            onChangeText:inputChangedHandler.bind(this, "amount"),
             value:inputs.amount.value
         }}  invalid={!inputs.amount.isValid}/>
         
         <Input label="Date" textInputConfig={{
-            onChangeText:inputChangeHandler.bind(this, "date"),
+            onChangeText:inputChangedHandler.bind(this, "date"),
             value:inputs.date.value,
             placeholder:"YYYY-MM-DD",
             maxLength:10,
@@ -78,8 +80,8 @@ function ExpenseForm({submitButtonLabel, onCancel, onSubmit, defaultValues}){
         </View>
         { formIsValid && (<Text style={styles.error}>Invalid input values - please check your entered data!</Text>)}
         <Input label="Description"textInputConfig={{
-            multiLine: true,
-            onChangeText:inputChangeHandler.bind(this, "description"),
+            multiline: true,
+            onChangeText:inputChangedHandler.bind(this, "description"),
             value:inputs.description.value
         }} invalid={!inputs.description.isValid}
         />
